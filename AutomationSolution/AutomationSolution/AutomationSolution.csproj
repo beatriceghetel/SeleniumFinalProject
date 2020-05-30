@@ -29,6 +29,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -62,18 +64,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\RandomDataProvider.cs" />
+    <Compile Include="MS_RegisterTest.cs" />
     <Compile Include="MS_LoginTest.cs" />
     <Compile Include="PageObjects\MS_HomePage.cs" />
     <Compile Include="PageObjects\MS_LoginPage.cs" />
+    <Compile Include="PageObjects\MS_RegisterAccountPage.cs" />
+    <Compile Include="PageObjects\MS_RegisterPage.cs" />
+    <Compile Include="PageObjects\RegisterAccountPage\InputData\RegisterAccountBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageObjects\AddAdressPage\InputData\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="..\packages\WebDriver.ChromeDriver.win32.83.0.4103.39\content\chromedriver.exe">
       <Link>chromedriver.exe</Link>

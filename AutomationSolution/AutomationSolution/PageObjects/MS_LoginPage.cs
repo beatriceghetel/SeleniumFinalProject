@@ -20,10 +20,13 @@ namespace AutomationSolution.PageObjects
             wait.Until(ExpectedConditions.ElementIsVisible(submit));
         }
 
-        private By email = By.Id("email");
+        private By email = By.Id("email");   // used for login
         private IWebElement TxtEmail => driver.FindElement(email);
 
-        private By password = By.Id("passwd");
+        private By emailCreate = By.Id("email_create");
+        private IWebElement TxtEmailCreate => driver.FindElement(emailCreate);
+
+        private By password = By.Id("passwd");   // used for register
         private IWebElement TxtPassword => driver.FindElement(password);
 
         private By submit => By.CssSelector("#SubmitLogin > span");
@@ -37,6 +40,13 @@ namespace AutomationSolution.PageObjects
         {
             TxtEmail.SendKeys(email);
             TxtPassword.SendKeys(password);
+            BtnLogin.Click();
+            return new MS_HomePage(driver);
+        }
+
+        public MS_HomePage RegisterApplication(string emailCreate)
+        {
+            TxtEmailCreate.SendKeys(emailCreate);
             BtnLogin.Click();
             return new MS_HomePage(driver);
         }
