@@ -18,19 +18,23 @@ namespace AutomationSolution.PageObjects
             driver = browser;
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             wait.Until(ExpectedConditions.ElementIsVisible(submit));
+            wait.Until(ExpectedConditions.ElementIsVisible(submitCreate));
         }
 
         private By email = By.Id("email");   // used for login
         private IWebElement TxtEmail => driver.FindElement(email);
 
-        private By emailCreate = By.Id("email_create");
+        private By emailCreate = By.Id("email_create");    // used for register
         private IWebElement TxtEmailCreate => driver.FindElement(emailCreate);
 
-        private By password = By.Id("passwd");   // used for register
+        private By password = By.Id("passwd");   
         private IWebElement TxtPassword => driver.FindElement(password);
 
-        private By submit => By.CssSelector("#SubmitLogin > span");
+        private By submit => By.CssSelector("#SubmitLogin > span:nth-child(1)");
         private IWebElement BtnLogin => driver.FindElement(submit);
+
+        private By submitCreate => By.CssSelector("#SubmitCreate > span:nth-child(1)");
+        private IWebElement BtnRegister => driver.FindElement(submitCreate);
 
         private By incorrectCredentials = By.XPath("//*[@id='center_column']/div[1]/ol/li");
         private IWebElement LblErrorMessage => driver.FindElement(incorrectCredentials);
@@ -47,7 +51,7 @@ namespace AutomationSolution.PageObjects
         public MS_HomePage RegisterApplication(string emailCreate)
         {
             TxtEmailCreate.SendKeys(emailCreate);
-            BtnLogin.Click();
+            BtnRegister.Click();
             return new MS_HomePage(driver);
         }
     }

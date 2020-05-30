@@ -15,7 +15,7 @@ namespace AutomationSolution.Helper
         public static String getRandomEmail()
         {
             Random r = new Random();
-            return (EMAIL_ROOT + r.Next(10000, 99999999) + EMAIL_ROOT);
+            return (EMAIL_ROOT + r.Next(10000, 99999999) + EMAIL_SUFFIX);
         }
     }
 }
