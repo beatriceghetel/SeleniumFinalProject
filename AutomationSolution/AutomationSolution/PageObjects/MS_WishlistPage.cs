@@ -31,7 +31,7 @@ namespace AutomationSolution.PageObjects
         private IWebElement LblRemovedFromWishlist => driver.FindElement(removedSuccessfullyAlert);
 
 
-        public String removeItemFromWishlist(ShopItem shopItem)
+        public String removeItemFromWishlist(ShopItemBO shopItem)
         {
             wait.Until(ExpectedConditions.ElementIsVisible(myWishlist));
             BtnWishlist.Click();

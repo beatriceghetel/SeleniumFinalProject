@@ -37,7 +37,7 @@ namespace AutomationSolution.PageObjects
         private By modalBox = By.CssSelector(".fancybox-error");
         private IWebElement LblSuccessfullyAdded => driver.FindElement(modalBox);
 
-        public MS_ProductViewPage ChooseFirstItem(ShopItem shopItem)
+        public MS_ProductViewPage ChooseFirstItem(ShopItemBO shopItem)
         {
             // Search for the desired item
             ISearchBox.Click();
@@ -55,7 +55,7 @@ namespace AutomationSolution.PageObjects
         }
 
 
-        public String WishlistItem(ShopItem shopItem)
+        public String WishlistItem(ShopItemBO shopItem)
         {
             BtnWishList.Click();
             wait.Until(ExpectedConditions.ElementIsVisible(modalBox));

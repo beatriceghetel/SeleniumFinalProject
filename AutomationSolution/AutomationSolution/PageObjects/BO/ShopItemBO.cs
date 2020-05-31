@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationSolution.PageObjects.BO
 {
-    public class ShopItem
+    public class ShopItemBO
     {
         public String itemName { get; set; } = "Printed Summer Dress";
     }

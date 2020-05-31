@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace AutomationSolution
 {
     [TestClass]
-    public class MS_RemoveFromWishlistTest
+    public class MS_ContactFormTest
     {
         private IWebDriver driver;
         private MS_LoginPage loginPage;
@@ -31,25 +31,33 @@ namespace AutomationSolution
             // Login
             var loginPage = new MS_LoginPage(driver);
             var loginBO = new LoginBO();
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             loginPage.LoginApplication(loginBO.email, loginBO.password);
         }
 
-
         [TestMethod]
-        public void RemoveFromWishlistTest()
+        public void FillContactFormWithoutAttachment()
         {
-            var userAccountPage = new MS_UserAccountPage(driver);
-            var shopItem = new ShopItemBO();
+            var contactPage = new MS_ContactPage(driver);
+            var contactFormBO = new ContactFormBO();
+            //Thread.Sleep(1000);
 
-            userAccountPage.GoToWishlist();
-            Thread.Sleep(2000);
-
-            var myWishlist = new MS_WishlistPage(driver);
-            var actualResult = myWishlist.removeItemFromWishlist(shopItem);
-            var expectedResult = "No products";
+            var expectedResult = "Your message has been successfully sent to our team.";
+            var actualResult = contactPage.fillContactMessageWithoutAttachment(contactFormBO);
 
             Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void FillContactFormWithAttachment()
+        {
+            var contactPage = new MS_ContactPage(driver);
+            var contactFormBO = new ContactFormBO();
+
+            contactPage.fillContactMessageWithAttachment(contactFormBO);
+            Thread.Sleep(5000);
+
+            //Assert.AreEqual(expectedResult, actualResult);
         }
 
 

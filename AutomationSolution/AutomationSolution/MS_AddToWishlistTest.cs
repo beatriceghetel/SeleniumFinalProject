@@ -39,7 +39,7 @@ namespace AutomationSolution
         public void AddToWishlistTest()
         {
             var productGridViewPage = new MS_ProductViewPage(driver);
-            var shopItem = new ShopItem();
+            var shopItem = new ShopItemBO();
 
             productGridViewPage.ChooseFirstItem(shopItem);
             Thread.Sleep(2000);
