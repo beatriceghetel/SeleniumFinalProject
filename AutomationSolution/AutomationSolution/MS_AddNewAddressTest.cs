@@ -12,7 +12,7 @@ namespace AutomationSolution
     {
         private IWebDriver driver;
         private MS_LoginPage loginPage;
-        private MS_AccountPage accountPage;
+        private MS_EditAddressPage accountPage;
 
         [TestInitialize]
         public void TestInitialize()

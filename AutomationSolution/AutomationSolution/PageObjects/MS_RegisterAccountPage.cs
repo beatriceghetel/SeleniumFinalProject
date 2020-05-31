@@ -1,4 +1,4 @@
-using AutomationSolution.PageObjects.RegisterAccountPage.InputData;
+using AutomationSolution.PageObjects.BO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;

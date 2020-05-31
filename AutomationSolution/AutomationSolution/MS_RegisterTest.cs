@@ -1,6 +1,6 @@
 using AutomationSolution.Helper;
 using AutomationSolution.PageObjects;
-using AutomationSolution.PageObjects.RegisterAccountPage.InputData;
+using AutomationSolution.PageObjects.BO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -44,11 +44,11 @@ namespace AutomationSolution
             Thread.Sleep(5000);
             driver.FindElement(By.Id("id_gender1"));
 
-            var registerAccountBO = new RegisterAccountBO
+            var registerAccountBO = new RegisterAccountBO   // TODO: move this to PO
             {
-                Title = 1
+                Title = 0
             };
-            var addressDetailsPage = registerPage.CreateAccount(registerAccountBO);
+            var addressDetailsPage = registerPage.CreateAccount(registerAccountBO);   // TODO make this disappear
             Thread.Sleep(5000);
             var expectedResult = (registerAccountBO.firstName + " " + registerAccountBO.lastName);
             var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;

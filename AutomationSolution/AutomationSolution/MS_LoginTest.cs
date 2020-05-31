@@ -1,5 +1,6 @@
 using System.Threading;
 using AutomationSolution.PageObjects;
+using AutomationSolution.PageObjects.BO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -25,17 +26,22 @@ namespace AutomationSolution
 
             loginPage = new MS_LoginPage(driver);
         }
+
+
         [TestMethod]
         public void Login_CorrectEmail_CorrectPassword()
         {
+            var loginBO = new LoginBO();
             Thread.Sleep(5000);   // TODO: wait event
-            loginPage.LoginApplication("geo.ac1@yahoo.com", "testare1");    // TODO: move this to a BO
+            loginPage.LoginApplication(loginBO.email, loginBO.password);
             Thread.Sleep(5000);
-            var expectedResult = "Georgiana Acornicesei";     // TODO: move this to a BO
+            var expectedResult = loginBO.username;
             var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;   // TODO: move this to a PO
 
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+
         [TestMethod]
         public void Login_IncorrectEmail_CorrectPassword()
         {
@@ -48,6 +54,7 @@ namespace AutomationSolution
             Assert.AreEqual(expectedResult, actualResults);
         }
 
+
         [TestMethod]
         public void Login_CorrectEmail_IncorrectPassword()
         {
@@ -59,6 +66,8 @@ namespace AutomationSolution
 
             Assert.AreEqual(expectedResult, actualResults);
         }
+
+
         [TestCleanup]
         public void TestCleanup()
         {
