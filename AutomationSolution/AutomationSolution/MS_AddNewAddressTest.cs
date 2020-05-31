@@ -1,24 +1,18 @@
-using AutomationSolution.Helper;
+using System.Threading;
 using AutomationSolution.PageObjects;
-using AutomationSolution.PageObjects.RegisterAccountPage.InputData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace AutomationSolution
 {
     [TestClass]
-    public class MS_RegisterTest
+    public class MS_AddNewAddressTest
     {
         private IWebDriver driver;
         private MS_LoginPage loginPage;
-        private MS_RegisterAccountPage registerPage;
+        private MS_AccountPage accountPage;
 
         [TestInitialize]
         public void TestInitialize()
@@ -29,33 +23,20 @@ namespace AutomationSolution
             Thread.Sleep(5000);
             driver.FindElement(By.CssSelector(".login")).Click();
             loginPage = new MS_LoginPage(driver);
-            registerPage = new MS_RegisterAccountPage(driver);
+
         }
 
         [TestMethod]
-        public void Register_CorrectEmail()
+        public void Login_CorrectEmail_CorrectPassword()
         {
-
             Thread.Sleep(5000);
-                      
-            
-            loginPage.RegisterApplication(RandomDataProvider.getRandomEmail());
-
+            loginPage.LoginApplication("geo.ac1@yahoo.com", "testare1");
             Thread.Sleep(5000);
-            driver.FindElement(By.Id("id_gender1"));
-
-            var registerAccountBO = new RegisterAccountBO
-            {
-                Title = 1
-            };
-            var addressDetailsPage = registerPage.CreateAccount(registerAccountBO);
-            Thread.Sleep(5000);
-            var expectedResult = (registerAccountBO.firstName + " " + registerAccountBO.lastName);
+            var expectedResult = "Georgiana Acornicesei";
             var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;
 
             Assert.AreEqual(expectedResult, actualResult);
         }
-
 
         [TestCleanup]
         public void TestCleanup()
@@ -63,6 +44,4 @@ namespace AutomationSolution
             driver.Quit();
         }
     }
-
-    
 }

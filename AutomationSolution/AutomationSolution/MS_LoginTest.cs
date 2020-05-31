@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using AutomationSolution.PageObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -28,11 +28,11 @@ namespace AutomationSolution
         [TestMethod]
         public void Login_CorrectEmail_CorrectPassword()
         {
+            Thread.Sleep(5000);   // TODO: wait event
+            loginPage.LoginApplication("geo.ac1@yahoo.com", "testare1");    // TODO: move this to a BO
             Thread.Sleep(5000);
-            loginPage.LoginApplication("geo.ac1@yahoo.com", "testare1");
-            Thread.Sleep(5000);
-            var expectedResult = "Georgiana Acornicesei";
-            var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;
+            var expectedResult = "Georgiana Acornicesei";     // TODO: move this to a BO
+            var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;   // TODO: move this to a PO
 
             Assert.AreEqual(expectedResult, actualResult);
         }
