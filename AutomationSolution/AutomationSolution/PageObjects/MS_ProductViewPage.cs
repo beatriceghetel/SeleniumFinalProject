@@ -43,11 +43,11 @@ namespace AutomationSolution.PageObjects
             ISearchBox.Click();
             ISearchBox.SendKeys(shopItem.itemName);
             ISearchBox.SendKeys(Keys.Enter);
-            Thread.Sleep(2000);
+            wait.Until(ExpectedConditions.ElementIsVisible(gridView));
 
             // Make sure we have the Grid view perspective
             BtnGridView.Click();
-            Thread.Sleep(2000);
+            wait.Until(ExpectedConditions.ElementIsVisible(firstResult));
 
             // Select first result
             LblFirstResult.Click();
@@ -58,7 +58,7 @@ namespace AutomationSolution.PageObjects
         public String WishlistItem(ShopItem shopItem)
         {
             BtnWishList.Click();
-            Thread.Sleep(2000);
+            wait.Until(ExpectedConditions.ElementIsVisible(modalBox));
             return LblSuccessfullyAdded.Text;
         }
 

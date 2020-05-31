@@ -28,5 +28,10 @@ namespace AutomationSolution.PageObjects
         private By myWishlist = By.CssSelector(".icon-heart");
         private IWebElement BtnWishlist => driver.FindElement(myWishlist);
 
+        public MS_UserAccountPage GoToWishlist()
+        {
+            BtnWishlist.Click();
+            return new MS_UserAccountPage(driver);
+        }
     }
 }

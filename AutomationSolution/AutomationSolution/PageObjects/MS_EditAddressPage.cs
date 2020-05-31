@@ -9,11 +9,11 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace AutomationSolution.PageObjects
 {
-    public class MS_AccountPage
+    public class MS_EditAddressPage
     {
         private IWebDriver driver;
 
-        public MS_AccountPage(IWebDriver browser)
+        public MS_EditAddressPage(IWebDriver browser)
         {
             driver = browser;
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
