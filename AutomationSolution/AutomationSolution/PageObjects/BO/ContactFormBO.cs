@@ -26,14 +26,21 @@ driver.findElement(By.name("send")).click();*/
 
         private static String getAttachmentFilePath()
         {
-            string currentDir = Environment.CurrentDirectory;
-            DirectoryInfo directory = new DirectoryInfo(currentDir);
-            FileInfo file = new FileInfo("page_error.png");
+            string directory = Directory.GetCurrentDirectory();
 
-            string fullDirectory = directory.FullName;
-            string fullFile = file.FullName;
+            string[] pathTokens = directory.Split(new char[] { '\\' });
 
-            return fullFile;
+            var counter = 0;
+            StringBuilder correctedPath = new StringBuilder();
+            for (counter = 0; counter < pathTokens.Length - 2; counter ++)
+            {                
+                correctedPath.Append(pathTokens[counter]);
+                correctedPath.Append("\\");
+            }
+            correctedPath.Append("PageObjects\\BO\\page_error.png");
+
+            Console.WriteLine("DEBUG: {0}", correctedPath.ToString());
+            return correctedPath.ToString();
         }
 
     }

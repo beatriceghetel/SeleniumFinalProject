@@ -32,7 +32,8 @@ namespace AutomationSolution.PageObjects
         private By email = By.Id("email");
         private IWebElement TxtEmail => driver.FindElement(email);
 
-        private By attachmentSelect = By.CssSelector("#uniform-fileUpload > span.filename");
+        //private By attachmentSelect = By.CssSelector("#uniform-fileUpload > span.action");
+        private By attachmentSelect = By.XPath("//input[@type='file']");
         private IWebElement TxtChooseFile => driver.FindElement(attachmentSelect);
 
         private By message = By.Id("message");
@@ -53,9 +54,7 @@ namespace AutomationSolution.PageObjects
             Thread.Sleep(2000);
             TxtSubjectHeading.SendKeys(formBO.subjectHeading);
             TxtEmail.Click();   // ALREADY FILLED WITH LOGGED IN EMAIL
-            TxtChooseFile.Click();
             TxtChooseFile.SendKeys(formBO.fileAddress);
-            TxtChooseFile.SendKeys(Keys.Enter);
             TxtMessage.SendKeys(formBO.message);
 
             BtnSubmit.Click();

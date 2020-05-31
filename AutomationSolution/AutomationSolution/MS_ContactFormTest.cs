@@ -40,7 +40,6 @@ namespace AutomationSolution
         {
             var contactPage = new MS_ContactPage(driver);
             var contactFormBO = new ContactFormBO();
-            //Thread.Sleep(1000);
 
             var expectedResult = "Your message has been successfully sent to our team.";
             var actualResult = contactPage.fillContactMessageWithoutAttachment(contactFormBO);
@@ -53,11 +52,11 @@ namespace AutomationSolution
         {
             var contactPage = new MS_ContactPage(driver);
             var contactFormBO = new ContactFormBO();
+            
+            var expectedResult = "Your message has been successfully sent to our team.";
+            var actualResult = contactPage.fillContactMessageWithAttachment(contactFormBO);
 
-            contactPage.fillContactMessageWithAttachment(contactFormBO);
-            Thread.Sleep(5000);
-
-            //Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
 
