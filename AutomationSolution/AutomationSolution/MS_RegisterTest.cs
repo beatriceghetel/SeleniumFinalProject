@@ -44,10 +44,7 @@ namespace AutomationSolution
             Thread.Sleep(5000);
             driver.FindElement(By.Id("id_gender1"));
 
-            var registerAccountBO = new RegisterAccountBO   // TODO: move this to PO
-            {
-                Title = 0
-            };
+            var registerAccountBO = new RegisterAccountBO();
             var addressDetailsPage = registerPage.CreateAccount(registerAccountBO);   // TODO make this disappear
             Thread.Sleep(5000);
             var expectedResult = (registerAccountBO.firstName + " " + registerAccountBO.lastName);

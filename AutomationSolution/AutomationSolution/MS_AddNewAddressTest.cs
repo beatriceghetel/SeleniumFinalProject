@@ -1,5 +1,6 @@
 using System.Threading;
 using AutomationSolution.PageObjects;
+using AutomationSolution.PageObjects.BO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -12,31 +13,43 @@ namespace AutomationSolution
     {
         private IWebDriver driver;
         private MS_LoginPage loginPage;
-        private MS_EditAddressPage accountPage;
+        private MS_EditAddressPage editAddressPage;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            // Access site
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://automationpractice.com/");
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             driver.FindElement(By.CssSelector(".login")).Click();
-            loginPage = new MS_LoginPage(driver);
 
+            // Login
+            var loginPage = new MS_LoginPage(driver);
+            var loginBO = new LoginBO();
+            Thread.Sleep(2000);
+            loginPage.LoginApplication(loginBO.email, loginBO.password);
         }
 
         [TestMethod]
-        public void Login_CorrectEmail_CorrectPassword()
+        public void TestAddNewAddress()
         {
-            Thread.Sleep(5000);
-            loginPage.LoginApplication("geo.ac1@yahoo.com", "testare1");
-            Thread.Sleep(5000);
-            var expectedResult = "Georgiana Acornicesei";
-            var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;
+            var userAccountPage = new MS_UserAccountPage(driver);            
+
+            userAccountPage.GoToAddressess();
+            Thread.Sleep(2000);
+                        
+            var registerNewAddressPage = new MS_NewAddressPage(driver);
+            var newAddress = new NewAddressBO();
+            registerNewAddressPage.CreateAddress(newAddress);
+
+            var actualResult = registerNewAddressPage.checkAddressSuccessfullyAdded().Trim();
+            var expectedResult = newAddress.aliasAddress.ToUpper();
 
             Assert.AreEqual(expectedResult, actualResult);
         }
+        
 
         [TestCleanup]
         public void TestCleanup()

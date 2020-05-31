@@ -33,5 +33,11 @@ namespace AutomationSolution.PageObjects
             BtnWishlist.Click();
             return new MS_UserAccountPage(driver);
         }
+
+        public MS_UserAccountPage GoToAddressess()
+        {
+            BtnAddressess.Click();
+            return new MS_UserAccountPage(driver);
+        }
     }
 }

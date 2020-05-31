@@ -10,7 +10,7 @@ namespace AutomationSolution.PageObjects.BO
     public class RegisterAccountBO
     {
         // Customer details
-        public int Title { get; set; } = 1;
+        public int Title { get; set; } = 0;
         public String customerFirstName { get; set; } = "Ionescu";
         public String customerLastName { get; set; } = "Vasile";
         // public String email { get; set; } = "vasile.ionescu@mail.com";   // AUTOFILLED FROM REGISTER
@@ -29,6 +29,6 @@ namespace AutomationSolution.PageObjects.BO
         public String postCode { get; set; } = "70123";
         public String country { get; set; } = "United States";
         public String mobilePhone { get; set; } = "1231231234";
-        public String aliasAddress { get; set; } = "Secondary Street no. 14";
+        public String aliasAddress { get; set; } = "My Colorado Address";
     }
 }
