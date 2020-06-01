@@ -67,6 +67,8 @@
     <Compile Include="Helper\RandomDataProvider.cs" />
     <Compile Include="MS_AddNewAddressTest.cs" />
     <Compile Include="MS_AddToWishlistTest.cs" />
+    <Compile Include="MS_BuyDressTest.cs" />
+    <Compile Include="MS_ChangePersonalInfoTest.cs" />
     <Compile Include="MS_ContactFormTest.cs" />
     <Compile Include="MS_RegisterTest.cs" />
     <Compile Include="MS_LoginTest.cs" />
@@ -76,11 +78,13 @@
     <Compile Include="PageObjects\BO\LoginBO.cs" />
     <Compile Include="PageObjects\BO\NewAddressBO.cs" />
     <Compile Include="PageObjects\BO\ShopItemBO.cs" />
+    <Compile Include="PageObjects\MS_ChangePersonalDetailsTest.cs" />
     <Compile Include="PageObjects\MS_ContactPage.cs" />
     <Compile Include="PageObjects\MS_EditAddressPage.cs" />
     <Compile Include="PageObjects\MS_HomePage.cs" />
     <Compile Include="PageObjects\MS_LoginPage.cs" />
     <Compile Include="PageObjects\MS_OrderHistoryPage.cs" />
+    <Compile Include="PageObjects\MS_PersonalDetailsPage.cs" />
     <Compile Include="PageObjects\MS_ProductViewPage.cs" />
     <Compile Include="PageObjects\MS_NewAddressPage.cs" />
     <Compile Include="PageObjects\MS_RegisterAccountPage.cs" />

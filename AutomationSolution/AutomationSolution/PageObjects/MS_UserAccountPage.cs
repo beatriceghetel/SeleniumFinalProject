@@ -28,6 +28,9 @@ namespace AutomationSolution.PageObjects
         private By myWishlist = By.CssSelector(".icon-heart");
         private IWebElement BtnWishlist => driver.FindElement(myWishlist);
 
+        private By myPersonalInfo = By.CssSelector(".icon-user");
+        private IWebElement BtnMyPersonalInfo => driver.FindElement(myPersonalInfo);
+
         public MS_UserAccountPage GoToWishlist()
         {
             BtnWishlist.Click();
@@ -43,6 +46,12 @@ namespace AutomationSolution.PageObjects
         public MS_UserAccountPage GoToOrderHistoryAndDetails()
         {
             BtnOrdersHistory.Click();
+            return new MS_UserAccountPage(driver);
+        }
+
+        public MS_UserAccountPage GoToMyPersonalInfo()
+        {
+            BtnMyPersonalInfo.Click();
             return new MS_UserAccountPage(driver);
         }
     }

@@ -61,7 +61,6 @@ namespace AutomationSolution.PageObjects
         {
             if (LblIsAvailable.Text.Equals("In stock"))
             {
-                BtnProceedToCheckout.Click();
                 return goThroughStepsUntilOrderCompletion();
             }
             else

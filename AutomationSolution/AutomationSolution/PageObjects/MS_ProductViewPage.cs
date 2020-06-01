@@ -33,6 +33,16 @@ namespace AutomationSolution.PageObjects
         private By wishList = By.Id("wishlist_button");
         private IWebElement BtnWishList => driver.FindElement(wishList);
 
+        private By addToCart = By.Id("add_to_cart");
+        private IWebElement BtnAddToCart => driver.FindElement(addToCart);
+
+
+        private By proceedToCheckOut = By.CssSelector("a.btn:nth-child(2) > span:nth-child(1)");
+        private IWebElement BtnProceedToCheckOut => driver.FindElement(proceedToCheckOut);
+
+        private By pressBlackButtonColor = By.Id("color_11");
+        private IWebElement BtnBlackColor => driver.FindElement(pressBlackButtonColor);
+
         //.fancybox-error
         private By modalBox = By.CssSelector(".fancybox-error");
         private IWebElement LblSuccessfullyAdded => driver.FindElement(modalBox);
@@ -54,7 +64,6 @@ namespace AutomationSolution.PageObjects
             return new MS_ProductViewPage(driver);
         }
 
-
         public String WishlistItem(ShopItemBO shopItem)
         {
             BtnWishList.Click();
@@ -62,5 +71,12 @@ namespace AutomationSolution.PageObjects
             return LblSuccessfullyAdded.Text;
         }
 
+        public void AddToCart(ShopItemBO shopItem)
+        {
+            BtnBlackColor.Click();
+            BtnAddToCart.Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(proceedToCheckOut));
+            BtnProceedToCheckOut.Click();
+        }
     }
 }
