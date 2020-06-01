@@ -116,19 +116,74 @@ In order to remove an item from the wishlist, we navigated to the user's account
 
 **************************************************************
 
-#### 7. Buying a product: 
+#### 7. Buying a product: `MS_BuyDressTest`
+
+For the acquisition tests we have used a `ShopItemBO` searching for the product by name, we have chosen the first item from the list (ensuring the fact that the products view is in Grid format, like in the Wishlist scenario). Before addin the item to the cart we also changed its color to black value. Then we clicked the proceed to checkout, and we used the `ProceedToCheckoutWithoutChanges()` which simply uses the "next next" approach with default options for payment and transportation in order to reach the actual Checkout.
+
+In order to reuse the steps to reach checkout we have encapsulated them into the `goThroughStepsUntilOrderCompletion()` (this will be used also for the Reorder logic).
+
 
 **************************************************************
 
 #### 8. Use Order History to reorder product: `MS_ReorderTest`
 
-In this scenario we have used the `MS_UserAccountPage` in order to access the list of previous orders. From this point we have clicked the first order in the list in order to expand the `MS_OrderHistoryPage` and then click the 
-`MS_ShoppingCartPage`
+In this scenario we have used the `MS_UserAccountPage` in order to access the list of previous orders. From this point we have clicked the first order in the list in order to expand the `MS_OrderHistoryPage` and then click the button to navigate to the order history. We will select the first order from the list, expanded the order detailed view and clicked the Reorder button.
+
+From this point we will reuse the `MS_ShoppingCartPage` from the buy product scenario, changing the quantity of the product in 2 ways:
+
+* modifying the **input** directly
+* using the increase / decrease quantity **arrows**
+
+We also checked if the product is in stock, to see whether we can actually reorder it.
+
+```
+    public string ReorderWithChngedQuantity(int quantityChange, Boolean increase, Boolean useInputDirectly)
+        {
+            if (LblIsAvailable.Text.Equals("In stock"))
+            {
+                if (increase)
+                {
+                    if (useInputDirectly)
+                    {
+                        int currentQuanity = Int32.Parse(TxtItemQuantity.GetAttribute("value"));
+                        TxtItemQuantity.Clear();
+                        TxtItemQuantity.SendKeys((currentQuanity + quantityChange).ToString());
+                    } else
+                    {
+                        for (int i = 0; i < quantityChange; i++)
+                        {
+                            BtnQuantityIncrease.Click();
+                        }
+                    }
+                }
+                else
+                {
+                    if (useInputDirectly)
+                    {
+                        var currentQuanity = Int32.Parse(TxtItemQuantity.GetAttribute("value"));
+                        TxtItemQuantity.Clear();
+                        TxtItemQuantity.SendKeys((currentQuanity - quantityChange).ToString());
+                    }
+                    else
+                    {
+                        for (int i = 0; i < quantityChange; i++)
+                        {
+                            BtnQuantitySubstract.Click();
+                        }
+                    }
+                }
+                
+                return goThroughStepsUntilOrderCompletion();
+```
+
 
 
 **************************************************************
 
-#### 9. Edit account information: 
+#### 9. Edit account information: `MS_ChangePersonalInfoTest`
+
+This use-case reiterates through already explained mechanisms, it just navigates to the logged in user account page, then goes to the personal details page (`MS_PersonalDetailsPage`), changes the birth day with a random generated number between 1 - 28 and ticks the optional values (Special Offers and Newsletter). For the other fields we preserve the original values by pressing enter over them. for the old password field we have reused the `LoginBO` taking the password field value.
+
 
 **************************************************************
 
