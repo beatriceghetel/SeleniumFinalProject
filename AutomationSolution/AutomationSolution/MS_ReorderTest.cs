@@ -35,20 +35,37 @@ namespace AutomationSolution
         }
 
         [TestMethod]
-        public void ReorderTest()
+        public void ReorderChangeQuantityByInputTest()
         {
             var userAccountPage = new MS_UserAccountPage(driver);
             userAccountPage.GoToOrderHistoryAndDetails();
-            Thread.Sleep(1000);
 
             var orderHistoryPage = new MS_OrderHistoryPage(driver);
-            orderHistoryPage.GoToReorderPage();
+            orderHistoryPage.ReorderFirstItem();
 
+            var shoppingCart = new MS_ShoppingCartPage(driver);
 
-            /* var actualResult = productGridViewPage.WishlistItem(shopItem);
-             var expectedResult = "Added to your wishlist.";
+            var actualResult = shoppingCart.ReorderWithChngedQuantity(3, true, false);  // parameters mean: increase quantity by 2 using the increase Q arrow
+            var expectedResult = "Your order on My Store is complete.";
 
-             Assert.AreEqual(expectedResult, actualResult);*/
+            Assert.AreEqual(expectedResult, actualResult.Trim());
+        }
+
+        [TestMethod]
+        public void ReorderChangeQuantityByArrowsTest()
+        {
+            var userAccountPage = new MS_UserAccountPage(driver);
+            userAccountPage.GoToOrderHistoryAndDetails();
+
+            var orderHistoryPage = new MS_OrderHistoryPage(driver);
+            orderHistoryPage.ReorderFirstItem();
+
+            var shoppingCart = new MS_ShoppingCartPage(driver);            
+
+            var actualResult = shoppingCart.ReorderWithChngedQuantity(3, true, false);  // parameters mean: increase quantity by 2 using the increase Q arrow
+            var expectedResult = "Your order on My Store is complete.";
+
+            Assert.AreEqual(expectedResult, actualResult.Trim());
         }
 
 

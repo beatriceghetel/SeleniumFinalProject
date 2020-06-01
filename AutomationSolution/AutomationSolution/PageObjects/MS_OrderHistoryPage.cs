@@ -26,8 +26,10 @@ namespace AutomationSolution.PageObjects
         private By reorderFromOrderDetailView = By.CssSelector("a.button:nth-child(3)");
         private IWebElement BtnReorderFromOrderDetailView => driver.FindElement(reorderFromOrderDetailView);
 
-        public MS_OrderHistoryPage GoToReorderPage()
+        public MS_OrderHistoryPage ReorderFirstItem()
         {
+            TxtFirstOrderInList.Click();
+            wait.Until(ExpectedConditions.ElementIsVisible(reorderFromOrderDetailView));
             BtnReorderFromOrderDetailView.Click();
             return new MS_OrderHistoryPage(driver);
         }

@@ -80,11 +80,13 @@
     <Compile Include="PageObjects\MS_EditAddressPage.cs" />
     <Compile Include="PageObjects\MS_HomePage.cs" />
     <Compile Include="PageObjects\MS_LoginPage.cs" />
+    <Compile Include="PageObjects\MS_OrderHistoryPage.cs" />
     <Compile Include="PageObjects\MS_ProductViewPage.cs" />
     <Compile Include="PageObjects\MS_NewAddressPage.cs" />
     <Compile Include="PageObjects\MS_RegisterAccountPage.cs" />
     <Compile Include="PageObjects\MS_RegisterPage.cs" />
     <Compile Include="PageObjects\BO\RegisterAccountBO.cs" />
+    <Compile Include="PageObjects\MS_ShoppingCartPage.cs" />
     <Compile Include="PageObjects\MS_UserAccountPage.cs" />
     <Compile Include="PageObjects\MS_WishlistPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

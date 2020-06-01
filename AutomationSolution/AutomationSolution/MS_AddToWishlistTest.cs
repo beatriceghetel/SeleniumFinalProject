@@ -30,7 +30,7 @@ namespace AutomationSolution
             // Login
             var loginPage = new MS_LoginPage(driver);
             var loginBO = new LoginBO();
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             loginPage.LoginApplication(loginBO.email, loginBO.password);
         }
 
