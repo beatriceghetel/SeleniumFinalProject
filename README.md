@@ -97,6 +97,7 @@ private IWebElement LblSuccessfullyAdded => driver.FindElement(modalBox);
 **************************************************************
 
 #### 6. Remove item from Wishlist: `MS_RemoveFromWishlistTest`
+
 In order to remove an item from the wishlist, we navigated to the user's account page  (we implemented the `MS_UserAccountPage` Page Object in order to ensure a single point reference for all the actions that can be done from my account, including accessing the Wishlist), and then to the actual wishlist page `MS_WishlistPage`. Here we added selector in order to remove from wishlist the first added item. To validate the completion of the operation performed, we have waited for the display of the success alert.
 
 ```
@@ -120,6 +121,10 @@ In order to remove an item from the wishlist, we navigated to the user's account
 **************************************************************
 
 #### 8. Use Order History to reorder product: `MS_ReorderTest`
+
+In this scenario we have used the `MS_UserAccountPage` in order to access the list of previous orders. From this point we have clicked the first order in the list in order to expand the `MS_OrderHistoryPage` and then click the 
+`MS_ShoppingCartPage`
+
 
 **************************************************************
 
