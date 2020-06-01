@@ -39,5 +39,11 @@ namespace AutomationSolution.PageObjects
             BtnAddressess.Click();
             return new MS_UserAccountPage(driver);
         }
+
+        public MS_UserAccountPage GoToOrderHistoryAndDetails()
+        {
+            BtnOrdersHistory.Click();
+            return new MS_UserAccountPage(driver);
+        }
     }
 }

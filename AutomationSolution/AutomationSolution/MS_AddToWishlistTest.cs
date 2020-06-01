@@ -41,7 +41,7 @@ namespace AutomationSolution
             var shopItem = new ShopItemBO();
 
             productGridViewPage.ChooseFirstItem(shopItem);
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             var actualResult = productGridViewPage.WishlistItem(shopItem);
             var expectedResult = "Added to your wishlist.";
