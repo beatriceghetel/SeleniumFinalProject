@@ -31,12 +31,14 @@ driver.findElement(By.name("send")).click();*/
             string[] pathTokens = directory.Split(new char[] { '\\' });
 
             var counter = 0;
+            // directory variable has  \bin\Debug\ as last 2 folder ; we applied a little "hack" to get rid of those
             StringBuilder correctedPath = new StringBuilder();
             for (counter = 0; counter < pathTokens.Length - 2; counter ++)
             {                
                 correctedPath.Append(pathTokens[counter]);
                 correctedPath.Append("\\");
             }
+            // then we appended to the extracted path the actual sub-folders where our page_error.png is present
             correctedPath.Append("PageObjects\\BO\\page_error.png");
 
             Console.WriteLine("DEBUG: {0}", correctedPath.ToString());

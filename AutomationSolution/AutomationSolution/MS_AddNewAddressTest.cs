@@ -12,8 +12,6 @@ namespace AutomationSolution
     public class MS_AddNewAddressTest
     {
         private IWebDriver driver;
-        private MS_LoginPage loginPage;
-        private MS_EditAddressPage editAddressPage;
 
         [TestInitialize]
         public void TestInitialize()

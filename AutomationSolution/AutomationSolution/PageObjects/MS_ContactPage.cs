@@ -51,7 +51,7 @@ namespace AutomationSolution.PageObjects
             BtnContactUs.Click();
 
             //wait.Until(ExpectedConditions.ElementIsVisible(subjectHeading));   // PROCESS HANGS
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             TxtSubjectHeading.SendKeys(formBO.subjectHeading);
             TxtEmail.Click();   // ALREADY FILLED WITH LOGGED IN EMAIL
             TxtChooseFile.SendKeys(formBO.fileAddress);

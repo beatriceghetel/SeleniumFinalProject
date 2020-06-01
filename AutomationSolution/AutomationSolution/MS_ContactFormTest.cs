@@ -16,7 +16,6 @@ namespace AutomationSolution
     public class MS_ContactFormTest
     {
         private IWebDriver driver;
-        private MS_LoginPage loginPage;
 
         [TestInitialize]
         public void TestInitialize()
