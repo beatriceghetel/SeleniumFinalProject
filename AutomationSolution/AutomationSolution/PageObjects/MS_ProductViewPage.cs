@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace AutomationSolution.PageObjects
 {
@@ -50,6 +51,7 @@ namespace AutomationSolution.PageObjects
         public MS_ProductViewPage ChooseFirstItem(ShopItemBO shopItem)
         {
             // Search for the desired item
+            wait.Until(ExpectedConditions.ElementIsVisible(searchBox));
             ISearchBox.Click();
             ISearchBox.SendKeys(shopItem.itemName);
             ISearchBox.SendKeys(Keys.Enter);
@@ -73,6 +75,7 @@ namespace AutomationSolution.PageObjects
 
         public void AddToCart(ShopItemBO shopItem)
         {
+            wait.Until(ExpectedConditions.ElementIsVisible(pressBlackButtonColor));
             BtnBlackColor.Click();
             BtnAddToCart.Click();
             wait.Until(ExpectedConditions.ElementIsVisible(proceedToCheckOut));

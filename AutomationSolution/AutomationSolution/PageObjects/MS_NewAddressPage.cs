@@ -64,6 +64,7 @@ namespace AutomationSolution.PageObjects
         public MS_RegisterAccountPage CreateAddress(NewAddressBO newAddressBO)
         {
             // Open new address form
+            wait.Until(ExpectedConditions.ElementIsVisible(createNewAddress));
             BtnCreateNewAddress.Click();
             wait.Until(ExpectedConditions.ElementIsVisible(firstName));
 

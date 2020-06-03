@@ -3,12 +3,14 @@ using AutomationSolution.PageObjects.BO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace AutomationSolution
 {
@@ -16,21 +18,22 @@ namespace AutomationSolution
     public class MS_AddToWishlistTest
     {
         private IWebDriver driver;
+        private WebDriverWait wait;
 
         [TestInitialize]
         public void TestInitialize()
         {
             // Access site
             driver = new ChromeDriver();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://automationpractice.com/");
-            Thread.Sleep(2000);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".login")));
             driver.FindElement(By.CssSelector(".login")).Click();
 
             // Login
             var loginPage = new MS_LoginPage(driver);
             var loginBO = new LoginBO();
-            Thread.Sleep(2000);
             loginPage.LoginApplication(loginBO.email, loginBO.password);
         }
 
@@ -41,7 +44,6 @@ namespace AutomationSolution
             var shopItem = new ShopItemBO();
 
             productGridViewPage.ChooseFirstItem(shopItem);
-            Thread.Sleep(1000);
 
             var actualResult = productGridViewPage.WishlistItem(shopItem);
             var expectedResult = "Added to your wishlist.";

@@ -117,6 +117,7 @@ namespace AutomationSolution.PageObjects
         // We put here the "next next" logic to avoid repetition in the methods
         private string goThroughStepsUntilOrderCompletion()
         {
+            wait.Until(ExpectedConditions.ElementIsVisible(proceedToCheckout));
             BtnProceedToCheckout.Click();
 
             // we will use the same address as for the original order

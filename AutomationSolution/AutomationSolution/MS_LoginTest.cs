@@ -1,9 +1,12 @@
+using System;
 using System.Threading;
 using AutomationSolution.PageObjects;
 using AutomationSolution.PageObjects.BO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 
 namespace AutomationSolution
@@ -19,9 +22,11 @@ namespace AutomationSolution
         public void TestInitialize()
         {
             driver = new ChromeDriver();
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://automationpractice.com/");
-            Thread.Sleep(2000);
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector(".login")));
             driver.FindElement(By.CssSelector(".login")).Click();
 
             loginPage = new MS_LoginPage(driver);
@@ -32,11 +37,9 @@ namespace AutomationSolution
         public void Login_CorrectEmail_CorrectPassword()
         {
             var loginBO = new LoginBO();
-            Thread.Sleep(5000);   // TODO: wait event
             loginPage.LoginApplication(loginBO.email, loginBO.password);
-            Thread.Sleep(5000);
             var expectedResult = loginBO.username;
-            var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;   // TODO: move this to a PO
+            var actualResult = driver.FindElement(By.CssSelector(".account > span:nth-child(1)")).Text;
 
             Assert.AreEqual(expectedResult, actualResult);
         }
@@ -45,9 +48,7 @@ namespace AutomationSolution
         [TestMethod]
         public void Login_IncorrectEmail_CorrectPassword()
         {
-            Thread.Sleep(5000);
             loginPage.LoginApplication("geo.acccc1@yahoo.com", "testare1");
-            Thread.Sleep(5000);
             var expectedResult = "Authentication failed.";
             var actualResults = driver.FindElement(By.XPath("//*[@id='center_column']/div[1]/ol/li")).Text;
 
@@ -58,9 +59,7 @@ namespace AutomationSolution
         [TestMethod]
         public void Login_CorrectEmail_IncorrectPassword()
         {
-            Thread.Sleep(5000);
             loginPage.LoginApplication("geo.ac1@yahoo.com", "testareee");
-            Thread.Sleep(5000);
             var expectedResult = "Authentication failed.";
             var actualResults = driver.FindElement(By.XPath("//*[@id='center_column']/div[1]/ol/li")).Text;
 

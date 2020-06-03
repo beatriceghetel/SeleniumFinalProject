@@ -12,11 +12,12 @@ namespace AutomationSolution.PageObjects
     public class MS_LoginPage
     {
         private IWebDriver driver;
+        private WebDriverWait wait;
 
         public MS_LoginPage(IWebDriver browser)
         {
             driver = browser;
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             wait.Until(ExpectedConditions.ElementIsVisible(submit));
             wait.Until(ExpectedConditions.ElementIsVisible(submitCreate));
         }
@@ -42,6 +43,7 @@ namespace AutomationSolution.PageObjects
 
         public MS_HomePage LoginApplication(string email, string password)
         {
+            wait.Until(ExpectedConditions.ElementIsVisible(this.email));
             TxtEmail.SendKeys(email);
             TxtPassword.SendKeys(password);
             BtnLogin.Click();
@@ -50,6 +52,7 @@ namespace AutomationSolution.PageObjects
 
         public MS_HomePage RegisterApplication(string emailCreate)
         {
+            wait.Until(ExpectedConditions.ElementIsVisible(this.emailCreate));
             TxtEmailCreate.SendKeys(emailCreate);
             BtnRegister.Click();
             return new MS_HomePage(driver);

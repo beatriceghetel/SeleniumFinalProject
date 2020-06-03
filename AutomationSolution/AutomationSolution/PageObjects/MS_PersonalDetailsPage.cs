@@ -52,6 +52,7 @@ namespace AutomationSolution.PageObjects
 
         public string UpdatePersonalInfo(LoginBO loginBO)
         {
+            wait.Until(ExpectedConditions.ElementIsVisible(customerFirstName));
             TxtCustomerFirstName.Click();
             TxtCustomerLastName.Click();
             TxtEmail.Click();

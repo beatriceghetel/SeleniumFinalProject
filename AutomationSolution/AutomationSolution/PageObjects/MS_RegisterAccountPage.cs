@@ -86,6 +86,7 @@ namespace AutomationSolution.PageObjects
         public MS_RegisterAccountPage CreateAccount(RegisterAccountBO registerAccountBO)
         {
             // Customer details
+            wait.Until(ExpectedConditions.ElementIsVisible(customerFirstName));
             LstTitle[registerAccountBO.Title].Click();
             TxtCustomerFirstName.SendKeys(registerAccountBO.customerFirstName);
             TxtCustomerLastName.SendKeys(registerAccountBO.customerLastName);
